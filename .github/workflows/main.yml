@@ -50,14 +50,12 @@ jobs:
           export default config;
           EOF
 
-      - name: Prepare www folder from repo files
+      - name: Prepare www folder
         run: |
           mkdir -p www
           cp index.html www/index.html
           cp main.html www/main.html
           cp company_logo.png www/company_logo.png
-          cp style.css www/style.css
-          cp script.js www/script.js
 
       - name: Install dependencies
         run: npm install
