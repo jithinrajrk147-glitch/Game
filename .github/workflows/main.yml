@@ -26,7 +26,7 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Create Capacitor config
+      - name: Create project files
         run: |
           cat > package.json << 'EOF'
           {
@@ -40,13 +40,12 @@ jobs:
           }
           EOF
 
-          cat > capacitor.config.js << 'EOF'
-          const config = {
-            appId: 'com.towerrush.app',
-            appName: 'TOWER Rush',
-            webDir: 'www'
-          };
-          export default config;
+          cat > capacitor.config.json << 'EOF'
+          {
+            "appId": "com.towerrush.app",
+            "appName": "TOWER Rush",
+            "webDir": "www"
+          }
           EOF
 
       - name: Prepare www folder
@@ -59,10 +58,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Init Capacitor
-        run: |
-          npx cap init "TOWER Rush" "com.towerrush.app" --web-dir=www
-          npx cap add android
+      - name: Add Android platform
+        run: npx cap add android
 
       - name: Generate app icons from logo.png
         run: |
